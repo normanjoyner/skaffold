@@ -20,7 +20,7 @@ RUN apt-get update && \
         ca-certificates \
         curl \
         build-essential \
-        git \ 
+        git \
         gcc \
         python-dev \
         python-setuptools \
@@ -64,4 +64,6 @@ WORKDIR /go/src/github.com/GoogleContainerTools/skaffold
 COPY . .
 RUN make out/skaffold-linux-amd64 && mv out/skaffold-linux-amd64 /usr/bin/skaffold
 
-CMD ["make", "integration"]
+WORKDIR /tmp/skaffold
+
+ENTRYPOINT ["skaffold"]
